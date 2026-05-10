@@ -1,4 +1,4 @@
-name: Build Windows EXE
+name: Build Windows App Folder
 
 on:
   workflow_dispatch:
@@ -6,29 +6,29 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-windows-exe:
+  build-windows-app:
     runs-on: windows-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
-      - name: Install PyInstaller
+      - name: Install build dependency
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: Build EXE
+      - name: Build Windows app folder - safer than onefile
         run: |
-          pyinstaller --onefile --windowed --clean --name LK_XD1000_Virtual_Training_Device --add-data "parameters_xd1000.json;." lk_xd1000_virtual_training_device.py
-
-      - name: Upload Windows EXE artifact
+          pyinstaller --onedir --windowed --clean --noupx --name LK_XD1000_Virtual_Training_Device --add-data "parameters_xd1000.json;." lk_xd1000_virtual_training_device.py
+      - name: Create ZIP package
+        shell: pwsh
+        run: |
+          Compress-Archive -Path dist\LK_XD1000_Virtual_Training_Device\* -DestinationPath LK_XD1000_Virtual_Training_Device_Windows_AppFolder.zip -Force
+          Get-FileHash LK_XD1000_Virtual_Training_Device_Windows_AppFolder.zip -Algorithm SHA256 | Format-List
+      - name: Upload Windows app folder artifact
         uses: actions/upload-artifact@v4
         with:
-          name: LK_XD1000_Virtual_Training_Device_Windows_EXE
-          path: dist/LK_XD1000_Virtual_Training_Device.exe
+          name: LK_XD1000_Virtual_Training_Device_Windows_AppFolder
+          path: LK_XD1000_Virtual_Training_Device_Windows_AppFolder.zip
