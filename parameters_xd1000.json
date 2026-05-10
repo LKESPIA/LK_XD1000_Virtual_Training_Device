@@ -1,0 +1,208 @@
+{
+  "model": "XD1000",
+  "based_on": "ATV310 training behavior simulator",
+  "parameters": [
+    {
+      "code": "ADD",
+      "name": "Terminal Modbus Drive Address",
+      "address": 6001,
+      "access": "R/WS",
+      "type": "uint16",
+      "default": 1,
+      "min": 1,
+      "max": 247,
+      "unit": "",
+      "group": "Communication"
+    },
+    {
+      "code": "TBR",
+      "name": "Terminal Modbus Baud Rate",
+      "address": 6003,
+      "access": "R/WS",
+      "type": "enum",
+      "default": "19200",
+      "values": [
+        "4800",
+        "9600",
+        "19200",
+        "38400"
+      ],
+      "unit": "bps",
+      "group": "Communication"
+    },
+    {
+      "code": "TFO",
+      "name": "Terminal Modbus Frame Format",
+      "address": 6004,
+      "access": "R/WS",
+      "type": "enum",
+      "default": "8E1",
+      "values": [
+        "8N1",
+        "8E1",
+        "8O1"
+      ],
+      "unit": "",
+      "group": "Communication"
+    },
+    {
+      "code": "TTO",
+      "name": "Terminal Modbus Timeout",
+      "address": 6005,
+      "access": "R/WS",
+      "type": "float",
+      "default": 10.0,
+      "min": 0.1,
+      "max": 30.0,
+      "unit": "s",
+      "group": "Communication"
+    },
+    {
+      "code": "ACC",
+      "name": "Acceleration Ramp Time",
+      "address": 9001,
+      "access": "RW",
+      "type": "float",
+      "default": 3.0,
+      "min": 0.1,
+      "max": 999.9,
+      "unit": "s",
+      "group": "Motor Control"
+    },
+    {
+      "code": "DEC",
+      "name": "Deceleration Ramp Time",
+      "address": 9002,
+      "access": "RW",
+      "type": "float",
+      "default": 3.0,
+      "min": 0.1,
+      "max": 999.9,
+      "unit": "s",
+      "group": "Motor Control"
+    },
+    {
+      "code": "LSP",
+      "name": "Low Speed",
+      "address": 9003,
+      "access": "RW",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 50.0,
+      "unit": "Hz",
+      "group": "Motor Control"
+    },
+    {
+      "code": "HSP",
+      "name": "High Speed",
+      "address": 9004,
+      "access": "RW",
+      "type": "float",
+      "default": 50.0,
+      "min": 1.0,
+      "max": 60.0,
+      "unit": "Hz",
+      "group": "Motor Control"
+    },
+    {
+      "code": "LFR",
+      "name": "Reference Frequency",
+      "address": 8502,
+      "access": "RW",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 60.0,
+      "unit": "Hz",
+      "group": "Command"
+    },
+    {
+      "code": "CMD",
+      "name": "Command Register",
+      "address": 8501,
+      "access": "RW",
+      "type": "uint16",
+      "default": 0,
+      "min": 0,
+      "max": 65535,
+      "unit": "",
+      "group": "Command"
+    },
+    {
+      "code": "ETA",
+      "name": "Status Register",
+      "address": 3201,
+      "access": "RO",
+      "type": "uint16",
+      "default": 0,
+      "min": 0,
+      "max": 65535,
+      "unit": "",
+      "group": "Monitoring"
+    },
+    {
+      "code": "RFR",
+      "name": "Motor Frequency",
+      "address": 3202,
+      "access": "RO",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 60.0,
+      "unit": "Hz",
+      "group": "Monitoring"
+    },
+    {
+      "code": "FRH",
+      "name": "Reference Frequency Before Ramp",
+      "address": 3203,
+      "access": "RO",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 60.0,
+      "unit": "Hz",
+      "group": "Monitoring"
+    },
+    {
+      "code": "LCR",
+      "name": "Motor Current",
+      "address": 3204,
+      "access": "RO",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 100.0,
+      "unit": "A",
+      "group": "Monitoring"
+    },
+    {
+      "code": "ULN",
+      "name": "Mains Voltage",
+      "address": 3207,
+      "access": "RO",
+      "type": "float",
+      "default": 415.0,
+      "min": 0.0,
+      "max": 500.0,
+      "unit": "V",
+      "group": "Monitoring"
+    },
+    {
+      "code": "SLL",
+      "name": "Modbus Communication Fault Response",
+      "address": 7010,
+      "access": "R/WS",
+      "type": "enum",
+      "default": "Freewheel stop",
+      "values": [
+        "Freewheel stop",
+        "Ramp stop",
+        "Ignore fault"
+      ],
+      "unit": "",
+      "group": "Fault Management"
+    }
+  ]
+}
